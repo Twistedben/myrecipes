@@ -5,5 +5,5 @@ class Chef < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255 },
                     format: {with: VALID_EMAIL_REGEX},
                     uniqueness: { case_sensitive: false } #tests uniqueness AND case insesnsitive
-  
+  has_many :recipes #this is singular because it's the MANY side of the assocation
 end

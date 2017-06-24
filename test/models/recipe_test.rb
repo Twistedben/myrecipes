@@ -6,7 +6,13 @@ class RecipeTest < ActiveSupport::TestCase
   #setup (a key method) runs before all of your tests are run, one by one, before every one test. 
   def setup
     #first we start with an instance variable
-    @recipe = Recipe.new(name: "vegetable", description: "Great vegetable recipe")
+    @chef = Chef.create!(chefname: "Ben", email: "bensgamingmail@yahoo.com")
+    @recipe = @chef.recipes.build(name: "vegetable", description: "Great vegetable recipe")
+  end
+  
+  test "recipe without chef should be invalid" do
+    @recipe.chef_id = nil
+    assert_not @recipe.valid?
   end
   
   test 'recipe should be valid' do
@@ -37,5 +43,7 @@ class RecipeTest < ActiveSupport::TestCase
     @recipe.description = "a" * 501
     assert_not @recipe.valid?
   end
+  
+  
   
 end 
