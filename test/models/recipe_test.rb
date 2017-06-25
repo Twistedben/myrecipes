@@ -44,6 +44,4 @@ class RecipeTest < ActiveSupport::TestCase
     assert_not @recipe.valid?
   end
   
-  
-  
 end 
