@@ -1,0 +1,22 @@
+<%= render 'shared/page_title', title: @recipe.name %>
+<!--  Here we render the partial, "shared/page_title" because it's in a separate folder. Then,
+after the location, we define what the "title" variable means that we set in our partial, and 
+in the Show page's case, it is the display of the Recipe's name, so @recipe.name-->
+<div class="well col-md-8 col-md-offset-2">
+  <h4 class="center description"><strong>Steps: </strong></h4>
+  <hr />
+  <%= simple_format(@recipe.description) %> <!-- Displays description as multi-line format--> 
+  <hr />
+  <div class="pull-right">
+    <p class="center">
+      <em>Created by:</em>
+    </p>
+    <p class="center">
+      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+    </p>
+    <p class="center">
+      <small><%= @recipe.chef.chefname.capitalize %></small>
+      <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
+    </p>
+  </div>
+</div>
