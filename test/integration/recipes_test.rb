@@ -34,6 +34,9 @@ class RecipesTest < ActionDispatch::IntegrationTest
     assert_match @recipe.name, response.body #Checks if Recipe's name is present on show page
     assert_match @recipe.description, response.body #Checks if Recipe's Description is present
     assert_match @chef.chefname, response.body #CHecks if chef's name is present on page
+    assert_select 'a[href=?]', edit_recipe_path(@recipe), text: 'Edit this Recipe' #Expecting show page to have a link to
+#edit the existing recipe, a link that would take you to that route "edit_recipe_path" with that show ID (@recipe) and the
+#link will have the text 'Edit this Recipe'
   end
  
   test "create new valid recipe" do 

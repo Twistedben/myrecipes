@@ -19,4 +19,10 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
       <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
     </p>
   </div>
+  <div class="recipe-actions">
+    <%= link_to 'Edit this Recipe', edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
+  </div>
+</div>
+<div class="col-md-4 col-md-offset-4 colormatch center">
+  [ <%= link_to "Return to Recipes Listing", recipes_path %> ]
 </div>
