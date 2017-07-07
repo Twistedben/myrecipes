@@ -58,7 +58,7 @@ $navbar-default-bg: #073b15;
 }
 .recipe-actions{
   padding-top: 5px;
-  a {
+  a { /* SCSS allows us to put this subclass of a inside of the class */
     color: #fff;
   }
 }
