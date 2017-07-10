@@ -38,6 +38,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
 #edit the existing recipe, a link that would take you to that route "edit_recipe_path" with that show ID (@recipe) and the
 #link will have the text 'Edit this Recipe'
     assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete this Recipe"#Expecting Show to have a Delete link
+    assert_select 'a[href=?]', recipes_path, text: "Return to Recipe's Listing" #Expecting btn link to return
   end
  
   test "create new valid recipe" do 

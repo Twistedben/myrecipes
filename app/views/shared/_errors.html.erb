@@ -1,0 +1,26 @@
+<% if obj.errors.any? %> <!-- "obj" is our variable for the rendered and passed in instance variable; in 
+the case of recipes, coming from the "_form.html.erb" partial, it'd be @recipe, but when we set up the chef's
+instance variables, "obj" may hold a different instance variable like @chef, depending what is passed in by 
+the corresponding partial's "render" method. Now, below, all @recipes are replaced with the "obj" variable, as
+that will now hold the passed in instance variable-->
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h2 class="panel-title"><!--  This h2 will be for the error testing in recipes_test.rb -->
+             <%= pluralize(obj.errors.count, "error") %> <!-- First show the number of errors, then if > 1 add an 's' to error  -->
+              prohibited this <%= obj.class %> from being saved:
+          </h2>
+          <div class="panel-body"> <!-- This is the second element for the test run  -->
+             <ul>
+            <% obj.errors.full_messages.each do |msg|  %>
+            <!--  Now run through and display each error -->
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> 
