@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-#Below, before_action is calling the method we defined in the Private section to find and set_recipe for 
-#the actions after "only:" in square brackets [] 
-  before_action :set_recipe, only: [:show, :edit, :update]
+#Below, before_action runs first everytime an action is called. Here we run "set_recipe" method defined in 
+#the Private section to find and set_recipe solely for the actions listed after "only:" in square brackets [] 
+before_action :set_recipe, only: [:show, :edit, :update]
   
   def index
     @recipes = Recipe.all

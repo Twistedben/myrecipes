@@ -6,4 +6,6 @@ class Chef < ApplicationRecord
                     format: {with: VALID_EMAIL_REGEX},
                     uniqueness: { case_sensitive: false } #tests uniqueness AND case insesnsitive
   has_many :recipes #this is singular because it's the MANY side of the assocation
+  has_secure_password #enables gem bcrypt
+  validates :password, presence: true, length: {minimum: 5}
 end

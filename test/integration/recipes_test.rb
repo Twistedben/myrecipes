@@ -4,7 +4,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
   
   def setup
     #first start with creating the chef, then next code line creates recipe
-    @chef = Chef.create!(chefname: "Ben", email: "Bensgamingmail@yahoo.com")
+    @chef = Chef.create!(chefname: "Ben", email: "Bensgamingmail@yahoo.com",
+                         password: "password", password_confirmation: "password")
     #Code below includes the chef: since recipes are belonging to chef, assigning recipe to chef above
     @recipe = Recipe.create(name: "Vegetable Saute", description: "Great Vegetable Saute", chef: @chef)
     #the two lines of code below are alternative way of doing the one line above

@@ -6,7 +6,8 @@ class RecipeTest < ActiveSupport::TestCase
   #setup (a key method) runs before all of your tests are run, one by one, before every one test. 
   def setup
     #first we start with an instance variable
-    @chef = Chef.create!(chefname: "Ben", email: "bensgamingmail@yahoo.com")
+    @chef = Chef.create!(chefname: "Ben", email: "bensgamingmail@yahoo.com",
+                         password: "password", password_confirmation: "password")
     @recipe = @chef.recipes.build(name: "vegetable", description: "Great vegetable recipe")
   end
   
