@@ -7,5 +7,5 @@ class Chef < ApplicationRecord
                     uniqueness: { case_sensitive: false } #tests uniqueness AND case insesnsitive
   has_many :recipes #this is singular because it's the MANY side of the assocation
   has_secure_password #enables gem bcrypt
-  validates :password, presence: true, length: {minimum: 5}
+  validates :password, presence: true, length: {minimum: 5}, allow_nil: true
 end
