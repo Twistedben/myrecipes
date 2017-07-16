@@ -1,5 +1,10 @@
 class ChefsController < ApplicationController
   
+  def index
+#We're changing this instance variable to "Chefs" plural, because we intend to grab them all
+    @chefs = Chef.all 
+  end
+  
   def new
     @chef = Chef.new
   end 
