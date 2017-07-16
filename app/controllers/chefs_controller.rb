@@ -1,8 +1,8 @@
 class ChefsController < ApplicationController
   
   def index
-#We're changing this instance variable to "Chefs" plural, because we intend to grab them all
-    @chefs = Chef.all 
+#Here, we are adding pagination to CHefs listing in Index
+    @chefs = Chef.paginate(page: params[:page], per_page: 5) 
   end
   
   def new
@@ -21,6 +21,8 @@ class ChefsController < ApplicationController
   
   def show
     @chef = Chef.find(params[:id])
+#Below, we define a second variable to hold the recipes from the first and paginate
+    @chef_recipes = @chef.recipes.paginate(page: params[:page], per_page: 5)
   end 
   
   def edit

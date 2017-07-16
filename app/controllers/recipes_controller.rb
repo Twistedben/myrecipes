@@ -3,8 +3,8 @@ class RecipesController < ApplicationController
 #the Private section to find and set_recipe solely for the actions listed after "only:" in square brackets [] 
 before_action :set_recipe, only: [:show, :edit, :update]
   
-  def index
-    @recipes = Recipe.all
+  def index #Below we allow pagination to Recipe's all and set it to 5 per page
+    @recipes = Recipe.paginate(page: params[:page], per_page: 5)
   end 
   
   def show
