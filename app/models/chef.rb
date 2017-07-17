@@ -5,7 +5,7 @@ class Chef < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255 },
                     format: {with: VALID_EMAIL_REGEX},
                     uniqueness: { case_sensitive: false } #tests uniqueness AND case insesnsitive
-  has_many :recipes #this is singular because it's the MANY side of the assocation
+  has_many :recipes, dependent: :destroy  #The dependent means it will destroy recipes if Chef is destroyed
   has_secure_password #enables gem bcrypt
   validates :password, presence: true, length: {minimum: 5}, allow_nil: true
 end

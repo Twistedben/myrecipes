@@ -72,4 +72,15 @@ class ChefTest < ActiveSupport::TestCase
     assert_not @chef.valid?
   end 
   
+  test "associated recipes should be destroyed" do
+#Because our Setup method doesn't save the @chef, we first have to do that below
+    @chef.save
+#Now, we need to create a recipe as well so we can test the association's destroy action
+    @chef.recipes.create!(name: "testing destroy", description: "testing destroy function")
+#To ensure the recipe was also deleted, we have to ensure there's a difference in the recipes
+    assert_difference 'Recipe.count', -1 do 
+      @chef.destroy #If we destroy the chef, the recipe count should go down by 1
+    end
+  end
+  
 end
