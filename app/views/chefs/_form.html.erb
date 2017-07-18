@@ -38,9 +38,8 @@
       </div>  
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-<!-- Below, we have the submit button display either "Create" or "Update" depending if it's a new user -->
-          <%= f.submit(@chef.new_record? ? "Create my account" : "Update my account", 
-                                          class: "btn btn-primary btn-lg btn-xlarge" )%>
+<!-- Below, we edited what the button displays by adding quotes after the form action -->
+          <%= f.submit "Create my account", class: "btn btn-primary btn-lg btn-xlarge" %>
         </div>
       </div>
     <% end %>

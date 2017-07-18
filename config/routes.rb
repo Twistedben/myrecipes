@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 #act as the new route. Telling it the verb is GET, the prefix "/signup" and the action 'chefs#new'
   get '/signup', to: 'chefs#new'
   resources :chefs, except: [:new]
+  
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end 
