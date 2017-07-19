@@ -1,6 +1,4 @@
 <%= render 'shared/page_title', title: "Log in" %>
-<div class="row">
-  <div class="col-md-12">
 <!-- Below, this is a 'form_for' our ':session' then we specify where it submits to, "url: login_path-->
     <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
       <div class="form-group">
