@@ -20,11 +20,13 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
     </p>
   </div>
   <div class="recipe-actions">
+    <% if logged_in? %>
     <%= link_to 'Edit this Recipe', edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
     <%= link_to "Delete this Recipe", recipe_path(@recipe), method: :delete, 
                                       data: { confirm: 'Are you sure you want to delete this recipe?' }, 
                                       #This is Javascript alert box 
                                       class: "btn btn-xs btn-danger" %>
+    <% end %>
   </div>
 </div>
 <div class="col-md-4 col-md-offset-4 colormatch center">
