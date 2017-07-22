@@ -9,6 +9,7 @@ class RecipesDeleteTest < ActionDispatch::IntegrationTest
   end 
   
   test "successfully delete a recipe" do
+    sign_in_as(@chef, "password")
     get recipe_path(@recipe) #First, see if Show route is available
     assert_template 'recipes/show' #See if Show view is available
     assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete this Recipe"#See if HTML/ERB Delete is there

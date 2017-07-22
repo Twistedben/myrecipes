@@ -20,11 +20,12 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
     </p>
   </div>
   <div class="recipe-actions">
-    <% if logged_in? %>
+<!--  Below will determine whether to show "Edit & Delete" if the person is logged in AND if that logged in user is the 
+chef associated with that recipe. -->
+    <% if logged_in? && current_chef == @recipe.chef %>
     <%= link_to 'Edit this Recipe', edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
     <%= link_to "Delete this Recipe", recipe_path(@recipe), method: :delete, 
                                       data: { confirm: 'Are you sure you want to delete this recipe?' }, 
-                                      #This is Javascript alert box 
                                       class: "btn btn-xs btn-danger" %>
     <% end %>
   </div>
@@ -32,3 +33,6 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
 <div class="col-md-4 col-md-offset-4 colormatch center">
    <%= link_to "Return to Recipe's Listing", recipes_path, class: "btn btn-success btn-primary" %> 
 </div>
+
+
+

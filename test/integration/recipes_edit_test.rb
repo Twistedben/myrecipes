@@ -9,6 +9,7 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
   end 
   
   test 'reject invalid recipe update' do
+    sign_in_as(@chef, "password")
     get edit_recipe_path(@recipe) #Rails routes shows us this prefix: edit_recipe, GET, /recipes/:id/edit(.:format).
     assert_template 'recipes/edit' #See if the edit template view is there.
 #Below, Patch = Editting of Recipe. The path is derived from Rails ROutes PATCH. Params tells us what we're submitting.
@@ -20,6 +21,7 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
   end
   
   test 'successfully edit a recipe' do
+    sign_in_as(@chef, "password")
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
 #Below, we create two variables for this test only

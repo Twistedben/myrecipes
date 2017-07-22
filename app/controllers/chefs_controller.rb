@@ -1,5 +1,7 @@
 class ChefsController < ApplicationController
-  before_action :set_chef, only: [:show, :edit, :update, :delete]
+  before_action :set_chef, only: [:show, :edit, :update, :destroy]
+#Below, we restrict logged in chefs from being able to modify another chef.
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
 #Here, we are adding pagination to CHefs listing in Index
@@ -52,6 +54,13 @@ class ChefsController < ApplicationController
   
   def set_chef
      @chef = Chef.find(params[:id])
+  end
+#Below, we prevent the current user from being unable to edit chefs that don't belong to them, logged in. 
+  def require_same_user
+    if current_chef != @chef
+      flash[:danger] = "You can only modify your own account!"
+      redirect_to chefs_path
+    end 
   end
   
 end 

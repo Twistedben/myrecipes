@@ -1,7 +1,11 @@
 class RecipesController < ApplicationController
 #Below, before_action runs first everytime an action is called. Here we run "set_recipe" method defined in 
 #the Private section to find and set_recipe solely for the actions listed after "only:" in square brackets [] 
-before_action :set_recipe, only: [:show, :edit, :update]
+before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+#Below, we're calling "require_user" from "application_controller" to allow visitors only to see Index and Show
+before_action :require_user, except: [:index, :show]
+#Below, restricts only the usre who created the recipe to edit, update, or destroy it.
+before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index #Below we allow pagination to Recipe's all and set it to 5 per page
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
@@ -54,6 +58,15 @@ before_action :set_recipe, only: [:show, :edit, :update]
   
   def recipe_params #Whitelisting what we pass in 
     params.require(:recipe).permit(:name, :description)
+  end
+#Now, we build a method to allow only the user who created the associated recipe to be able to modify it.
+  def require_same_user
+#Below, the if statement is if the logged in chef is not equal to the recipe's associated chef owner, then you get 
+#a error flash message and redirected to the recipes show page.
+    if current_chef != @recipe.chef 
+      flash[:danger] = "You can only modify your own recipes!"
+      redirect_to recipes_path
+    end
   end
   
 end 

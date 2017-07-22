@@ -30,6 +30,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
   
   test "should get recipes show" do 
+    sign_in_as(@chef, "password")
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_match @recipe.name, response.body #Checks if Recipe's name is present on show page
@@ -43,6 +44,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
  
   test "create new valid recipe" do 
+    sign_in_as(@chef, "password")
     get new_recipe_path
     assert_template 'recipes/new' #Test for the existence of new page view.
     name_of_recipe = "chicken saute" #Defining a Test variable for recipe name.
@@ -57,6 +59,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
   
   test "reject invalid recipe submissions" do
+    sign_in_as(@chef, "password")
     get new_recipe_path
     assert_template 'recipes/new' #We now this is good because we already have the New Form view
     assert_no_difference 'Recipe.count' do #Seeing if no change occured to DB
