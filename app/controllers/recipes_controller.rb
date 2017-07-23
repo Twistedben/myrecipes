@@ -62,8 +62,8 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
 #Now, we build a method to allow only the user who created the associated recipe to be able to modify it.
   def require_same_user
 #Below, the if statement is if the logged in chef is not equal to the recipe's associated chef owner, then you get 
-#a error flash message and redirected to the recipes show page.
-    if current_chef != @recipe.chef 
+#a error flash message and redirected to the recipes show page. We also add if the logged in user is NOT an admin.
+    if current_chef != @recipe.chef and !current_chef.admin?
       flash[:danger] = "You can only modify your own recipes!"
       redirect_to recipes_path
     end

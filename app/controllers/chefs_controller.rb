@@ -2,6 +2,8 @@ class ChefsController < ApplicationController
   before_action :set_chef, only: [:show, :edit, :update, :destroy]
 #Below, we restrict logged in chefs from being able to modify another chef.
   before_action :require_same_user, only: [:edit, :update, :destroy]
+#Enforcing "require_admin method on the destroy action"
+  before_action :require_admin, only: [:destroy]
   
   def index
 #Here, we are adding pagination to CHefs listing in Index
@@ -41,9 +43,11 @@ class ChefsController < ApplicationController
   end
   
   def destroy
-    @chef.destroy
-    flash[:danger] = "Chef and All associated Recipes have been deleted"
-    redirect_to chefs_path
+    if !@chef.admin?
+      @chef.destroy
+      flash[:danger] = "Chef and All associated Recipes have been deleted"
+      redirect_to chefs_path
+    end   
   end
   
   private
@@ -55,11 +59,19 @@ class ChefsController < ApplicationController
   def set_chef
      @chef = Chef.find(params[:id])
   end
-#Below, we prevent the current user from being unable to edit chefs that don't belong to them, logged in. 
+#Below, we prevent the current user from being unable to edit chefs that don't belong to them, logged in. We also
+#check if the current chef is not an admin.
   def require_same_user
-    if current_chef != @chef
+    if current_chef != @chef and !current_chef.admin?
       flash[:danger] = "You can only modify your own account!"
       redirect_to chefs_path
+    end 
+  end
+#Below, we create a method that will restrict an action if the logged in user is not a admin.  
+  def require_admin
+    if logged_in? && !current_chef.admin?
+      flash[:danger] = "Only admin users can perform that action!"
+      redirect_to root_path
     end 
   end
   
