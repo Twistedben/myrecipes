@@ -8,4 +8,6 @@ class Chef < ApplicationRecord
   has_many :recipes, dependent: :destroy  #The dependent means it will destroy recipes if Chef is destroyed
   has_secure_password #enables gem bcrypt
   validates :password, presence: true, length: {minimum: 5}, allow_nil: true
+#Below, sets up one to many association with comments and if a chef is deletec, so is his comments.
+  has_many :comments, dependent: :destroy 
 end
