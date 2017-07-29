@@ -8,8 +8,13 @@
      <div class="col-md-8 well">
        <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
        <p><%= truncate(recipe.description, length: 150) %></p>
+<!--  Below, we check if there are ingredients inside the recipe and display them if so -->
+        <%  if recipe.ingredients.any? %>
+<!-- Below, we use magic to tell Rails to Render a "ingredients" partial instead of using an iterator here-->        
+          <p>Ingredients: <%= render recipe.ingredients  %> </p>
+        <% end %>
        <p>
-         <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
+         <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago, by <%= recipe.chef.chefname.capitalize %> </small>
          </span>
        </p>
 <!--  Below we check if the user is logged in as chef belonging to recipes or if it's an admin allowing modification -->

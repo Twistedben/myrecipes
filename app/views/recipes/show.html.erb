@@ -12,7 +12,7 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
       <em>Created by:</em>
     </p>
     <p class="center">
-      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+      <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %>
     </p>
     <p class="center">
       <small><%= @recipe.chef.chefname.capitalize %></small>
