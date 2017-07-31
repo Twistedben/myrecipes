@@ -22,6 +22,18 @@ is a variable to hold instance variables, it can be named whatever you wish.-->
         </div>
       </div>  
       <div class="form-group">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+<!--  Below, to show all the ingredients we have, we must loop through them -->
+<!-- So we're looping a display of check boxes, which are the "ingredient_ids". Then list all ingredients, 
+specified by their attributes of the table, :id and :name. -->
+            <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
+              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+            <% end %>
+          </div>
+        </div>
+      </div> 
+      <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
           <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %> <!-- class "btn-xlarge makes it green -->
         </div>

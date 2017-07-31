@@ -56,8 +56,8 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
     @recipe = Recipe.find(params[:id])
   end
   
-  def recipe_params #Whitelisting what we pass in 
-    params.require(:recipe).permit(:name, :description)
+  def recipe_params #Whitelisting what we pass in: the name, description, and now ingredients' IDs 
+    params.require(:recipe).permit(:name, :description, ingredient_ids: [] )
   end
 #Now, we build a method to allow only the user who created the associated recipe to be able to modify it.
   def require_same_user

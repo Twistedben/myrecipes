@@ -7,6 +7,10 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
   <hr />
   <%= simple_format(@recipe.description) %> <!-- Displays description as multi-line format--> 
   <hr />
+<!--  Below displays if there are any ingredients associated with the recipe -->
+  <% if @recipe.ingredients.any? %>
+    <p><b>Ingredients: </b><%= render @recipe.ingredients %></p>
+  <% end %>
   <div class="pull-right">
     <p class="center">
       <em>Created by:</em>
