@@ -1,0 +1,11 @@
+<!--  So this partial is a view to set up a do block to display each comment from another _comment partial -->
+<div align="center"> 
+  <%= will_paginate comments %>
+</div>
+<!-- Now we run through the individual comments and render a comment pratial from here  -->
+<% comments.each do |comment| %>
+  <%= render(partial: 'comments/comment', object: comment) %>
+<% end %>
+<div align="center"> 
+  <%= will_paginate comments %>
+</div>

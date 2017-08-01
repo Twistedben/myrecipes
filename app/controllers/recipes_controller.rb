@@ -12,7 +12,7 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
   end 
   
   def show
-    
+    @comments = @recipe.comments.paginate(page: params[:page], per_page: 5)
   end 
   
   def new

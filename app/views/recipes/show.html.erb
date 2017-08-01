@@ -37,6 +37,26 @@ chef associated with that recipe. Or if the user is admin. -->
 <div class="col-md-4 col-md-offset-4 colormatch center">
    <%= link_to "Return to Recipe's Listing", recipes_path, class: "btn btn-success btn-primary" %> 
 </div>
-
+<!-- Below displays comments on Recipe page if there are any assigned to the @recipe -->
+<% if @recipe.comments != 0 %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Prior Comments: </h3>
+      <div id="messages"> 
+<!--  Below, we use a different method of rendering a partial. After "partial:" we put the folder path and then
+partial name in single ''s and then we have to specify an object as the instance variable, which is @comments. We 
+have to grab this instance variable from the recipes_controller.rb for it to render properly. Since this is the Show
+page, we have to specify this instance variable inside the controller's "show" action. -->
+        <%= render partial: 'comments/comments', object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>No Comments!</h3>
+    </div>
+  </div>
+<% end %>
 
 
