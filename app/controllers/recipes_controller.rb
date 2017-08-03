@@ -13,6 +13,7 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def show
     @comments = @recipe.comments.paginate(page: params[:page], per_page: 5)
+    @comment = Comment.new #This allows new comments within /recipe/show.html.erb 
   end 
   
   def new

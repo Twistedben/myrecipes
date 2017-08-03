@@ -14,8 +14,8 @@
           <p>Ingredients: <%= render recipe.ingredients  %> </p>
         <% end %>
        <p>
-         <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago, by <%= recipe.chef.chefname.capitalize %> </small>
-         </span>
+         <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago, by <%= recipe.chef.chefname.capitalize %>
+                                              | <%= pluralize(recipe.comments.count, 'Comment')%> </small></span>
        </p>
 <!--  Below we check if the user is logged in as chef belonging to recipes or if it's an admin allowing modification -->
      <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>

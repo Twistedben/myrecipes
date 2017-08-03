@@ -37,6 +37,35 @@ chef associated with that recipe. Or if the user is admin. -->
 <div class="col-md-4 col-md-offset-4 colormatch center">
    <%= link_to "Return to Recipe's Listing", recipes_path, class: "btn btn-success btn-primary" %> 
 </div>
+
+<!--  Below is the form for adding NEW comments to the Recipe show page -->
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Comments: </h3>
+      <hr />
+<!-- Below, we need to provide both recipe variable and @comment instance variable for form_for helper, because of
+the nested route in "routes.rb" and the @comment instance variable needs to be defined in recipes_controller.rb -->
+     <%= form_for([@recipe, @comment],:html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :description, "Comment" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_area :description, rows: 8, class: "form-control", placeholder: "Enter Comment Here" %>
+        </div>
+      </div>  
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <%= f.submit "Submit Comment", class: "btn btn-primary btn-lg btn-xlarge" %> <!-- class "btn-xlarge makes it green -->
+          </div>
+        </div>
+      <% end %>
+        <hr />
+      </div>
+    </div>
+<% end %>
+
 <!-- Below displays comments on Recipe page if there are any assigned to the @recipe -->
 <% if @recipe.comments != 0 %>
   <div class="row">
