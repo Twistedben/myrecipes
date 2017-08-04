@@ -45,8 +45,9 @@ chef associated with that recipe. Or if the user is admin. -->
       <h3>Comments: </h3>
       <hr />
 <!-- Below, we need to provide both recipe variable and @comment instance variable for form_for helper, because of
-the nested route in "routes.rb" and the @comment instance variable needs to be defined in recipes_controller.rb -->
-     <%= form_for([@recipe, @comment],:html => {class: "form-horizontal", role: "form"}) do |f| %>
+the nested route in "routes.rb" and the @comment instance variable needs to be defined in recipes_controller.rb. 
+Below, adding "remote: true" allows the form to be submitted via AJAX-->
+     <%= form_for([@recipe, @comment], remote: true, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
         <div class="control-label col-md-2">
           <%= f.label :description, "Comment" %>
@@ -71,6 +72,8 @@ the nested route in "routes.rb" and the @comment instance variable needs to be d
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h3>Prior Comments: </h3>
+<!--  Below, we use this id "messages" to set up a JS event listener, anytime something happens here,
+JS will then react and execute code. This occurs in "/assests/javascripts/channels/comments.coffee" under "received -->
       <div id="messages"> 
 <!--  Below, we use a different method of rendering a partial. After "partial:" we put the folder path and then
 partial name in single ''s and then we have to specify an object as the instance variable, which is @comments. We 

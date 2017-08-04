@@ -18,6 +18,7 @@ class ChefsController < ApplicationController
    @chef = Chef.new(chef_params)
    if @chef.save
      session[:chef_id] = @chef.id #This will automatically log in the chef after they create an account
+     cookies.signed[:chef_id] = @chef.id #Allows newly created chefs realtime comments
      flash[:success] = "Welcome #{@chef.chefname} to MyRecipes App!"
      redirect_to chef_path(@chef)
    else 

@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
     if chef && chef.authenticate(params[:session][:password])#If chef is valid and& password authenticates, its successful
 #Below, this sets up for an encrypted cookie for the session containing the logged in user's "chef id".
       session[:chef_id] = chef.id
+      cookies.signed[:chef_id] = chef.id#Sets up Connection for "connect" method in "connection.rb"
       flash[:success] = "You have successfully logged in!"
       redirect_to chef #chef is short form for "chef_path(chef)"
     else

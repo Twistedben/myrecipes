@@ -14,8 +14,12 @@ class CommentsController < ApplicationController
 #enforcement above which permits only logged in users, and in this case, only logged in to comment.
     @comment.chef = current_chef 
     if @comment.save
-      flash[:success] = "Comment posted successfully!"
-      redirect_to recipe_path(@recipe) #Back to Recipe Show Page
+#Below you set up the ActionCable, then its argument being the channel you want it to broadcast from. Then, a comma
+#to specify what you want it to display.
+      ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
+#Below, we code out the FLash and Redirect so that the ActionCable can work in realtime
+      # flash[:success] = "Comment posted successfully!"
+      # redirect_to recipe_path(@recipe) #Back to Recipe Show Page
     else
       flash[:danger] = "Comment wasn't created."
 #Below, we can't normally render the show page again, because it isn't a redirect. It's not a separate
