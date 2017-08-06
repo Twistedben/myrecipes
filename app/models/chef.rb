@@ -10,4 +10,6 @@ class Chef < ApplicationRecord
   validates :password, presence: true, length: {minimum: 5}, allow_nil: true
 #Below, sets up one to many association with comments and if a chef is deletec, so is his comments.
   has_many :comments, dependent: :destroy 
+#Below, Message belongs_to Chef and Chef has_many Messages. Messages are Destroyed when Chef is.
+  has_many :messages, dependent: :destroy
 end

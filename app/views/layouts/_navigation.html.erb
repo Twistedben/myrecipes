@@ -17,8 +17,9 @@
 <!--  Below is Chefs and All Recipes Links for non-logged in users -->        
         <li><%= link_to "Chefs", chefs_path %></li>
         <li><%= link_to "All Recipes", recipes_path %></li>
-<!--  Below is Recipes dropdown -->
+<!--  Below is Recipes dropdown in If Condition & Chatroom -->
         <% if logged_in? %>
+          <li><%= link_to "Chatroom", chat_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></a>
             <ul class="dropdown-menu">

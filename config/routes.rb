@@ -18,4 +18,17 @@ Rails.application.routes.draw do
   resources :ingredients, except: [:destroy]
 #Below is the route this communication will go through.
   mount ActionCable.server => '/cable'
+#Below, we create the routes for the Chatroom, to our chatrooms controller's show action.
+  get '/chat', to: 'chatrooms#show'
+#Below, we create a route path for new massges to be created
+  resources :messages, only: [:create]
 end 
+
+
+
+
+
+
+
+
+

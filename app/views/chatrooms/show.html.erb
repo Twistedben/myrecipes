@@ -1,0 +1,22 @@
+<%= render 'shared/page_title', title: "ChefChat" %>
+<!-- Below is where we display the messages  -->
+<div class="row chat-container">
+  <div class="col-md-8 center-block">
+    <div class="messages" id="messages">
+<!--  Below we want to render all the messages in the DB -->
+      <%= render @messages %> <!--  This takes the @messages instance variable in chatrooms_controller.rb and
+      looks for a "/messages" folder in "/views" then a "_message.html.erb" parial inside that folder, 
+      then iterates through the meassges inside there. This is a shorthand Rails iterator feature -->
+    </div>
+    <hr />
+<!--  Below is where we create the messages -->
+    <div class="message-container">
+  <!-- Below is the form for creating new messages (@message coming from "messages_controller.rb") -->
+      <%= form_for(@message, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <%= f.text_area :content, class: "form-control", placeholder: "Type Message Here!" %>
+        <%= f.submit "Send", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
