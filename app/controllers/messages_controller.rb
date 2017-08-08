@@ -5,7 +5,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chef = current_chef #Supplied by the "before_action"
     if @message.save
-      redirect_to chat_path #Ensures the new message shows on browser
+#Below, we add the code for ActionCable to broadcast our form submissions from the "show.thml.erb" file. 
+#We also use a new method defined in Private that renders the "_message" partial, which can be used for chat
+      ActionCable.server.broadcast 'chatroom_channel', message: render_message(@message),
+                                                        chef: @message.chef.chefname
     else 
       render 'chatrooms/show'
     end 
@@ -16,5 +19,10 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content) 
   end 
+  
+  def render_message(message)
+#In the "message" partial, we use the object "message" and locals allows us to access that non-instance var
+    render(partial: 'message', locals: { message: message })
+  end
   
 end

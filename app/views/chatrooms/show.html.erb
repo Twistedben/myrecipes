@@ -11,10 +11,12 @@
     <hr />
 <!--  Below is where we create the messages -->
     <div class="message-container">
-  <!-- Below is the form for creating new messages (@message coming from "messages_controller.rb") -->
-      <%= form_for(@message, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-        <%= f.text_area :content, class: "form-control", placeholder: "Type Message Here!" %>
-        <%= f.submit "Send", class: "btn btn-primary" %>
+  <!-- Below is the form for creating new messages (@message coming from "messages_controller.rb").
+  Below, we also add the "remote: " to take advantage of AJAX & ActionCable from "comments_channel.rb"-->
+      <%= form_for(@message, remote: true, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <!-- Below, "room_speaker" & "send:" is the content box. Meant to add for the "Enter" key to send -->
+        <%= f.text_area :content, class: "form-control", data: {behavior: "room_speaker"}, placeholder: "Type Message Here!" %>
+        <%= f.submit "Send", class: "btn btn-primary", data: {send: "message" } %>
       <% end %>
     </div>
   </div>

@@ -1,4 +1,6 @@
 class ChatroomsController < ApplicationController
+#Prevents users from access "/chat" 
+  before_action :require_user
   
   def show
     @message = Message.new
