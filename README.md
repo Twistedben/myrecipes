@@ -1,24 +1,11 @@
-# README
+# My Recipes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails app, with Action Cable chatroom, AJAX, commenting, Devise authentication and login.
 
-Things you may want to cover:
+## Demo
 
-* Ruby version
+Hosted on Heroku at: https://bens-myrecipes.herokuapp.com/
 
-* System dependencies
+### Note
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* At this time I was learning RoR, so I'm sure a lot of this code is sketchy at best and unfinished *
