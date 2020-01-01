@@ -88,12 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-#Below, we add ActionCable to Heroku using the URLs for the App's name, one with "/cable", the other two with the whole URL (s/-s)
+  #Below, we add ActionCable to Heroku using the URLs for the App's name, one with "/cable", the other two with the whole URL (s/-s)
   config.web_socket_server_url = "wss://bens-myrecipes.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = ['https://bens-myrecipes.herokuapp.com', 'http://bens-myrecipes.herokuapp.com']
+
 end
-
-
-
-
-

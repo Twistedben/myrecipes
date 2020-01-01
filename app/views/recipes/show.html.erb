@@ -5,7 +5,7 @@ in the Show page's case, it is the display of the Recipe's name, so @recipe.name
 <div class="well col-md-8 col-md-offset-2">
   <h4 class="center description"><strong>Steps: </strong></h4>
   <hr />
-  <%= simple_format(@recipe.description) %> <!-- Displays description as multi-line format--> 
+  <%= @recipe.description %> <!-- Displays description as multi-line format--> 
   <hr />
 <!--  Below displays if there are any ingredients associated with the recipe -->
   <% if @recipe.ingredients.any? %>

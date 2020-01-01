@@ -4,45 +4,47 @@
 is a variable to hold instance variables, it can be named whatever you wish.-->
 <div class="row">
   <div class="col-md-12">
-    <%= form_for(@recipe, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-      <div class="form-group">
-        <div class="control-label col-md-2">
-          <%= f.label :name %> <!-- "f" being the do block iterator, and ":name" being our recipe's name attribute  -->
-        </div>
-        <div class="col-md-8">
-          <%= f.text_field :name, class: "form-control", placeholder: "Name of recipe", autofocus: true %>
-        </div>
+    <%= form_for(@recipe, :html => {class: "form-horizontal", role: "form"}) do
+    |f| %>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :name %>
+        <!-- "f" being the do block iterator, and ":name" being our recipe's name attribute  -->
       </div>
-      <div class="form-group">
-        <div class="control-label col-md-2">
-          <%= f.label :description %>
-        </div>
-        <div class="col-md-8">
-          <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Enter steps of Recipe" %>
-        </div>
-      </div>  
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8">
-<!--  Below, to show all the ingredients we have, we must loop through them -->
-<!-- So we're looping a display of check boxes, which are the "ingredient_ids". Then list all ingredients, 
-specified by their attributes of the table, :id and :name. -->
-            <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
-              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-            <% end %>
-          </div>
-        </div>
+      <div class="col-md-8">
+        <%= f.text_field :name, class: "form-control", placeholder: "Name of recipe", autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :description %>
       </div> 
-      <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-          <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %> <!-- class "btn-xlarge makes it green -->
+      <div class="col-md-8 field">
+        <%= f.rich_text_area :description, class: "form-control", placeholder: "Enter steps of Recipe" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <!--  Below, to show all the ingredients we have, we must loop through them -->
+          <!-- So we're looping a display of check boxes, which are the "ingredient_ids". Then list all ingredients, 
+specified by their attributes of the table, :id and :name. -->
+          <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id,
+          :name do |cb| %> <% cb.label(class: "checkbox-inline input_checkbox")
+          cb.check_box(class: "checkbox") + cb.text %> <% end %>
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %>
+        <!-- class "btn-xlarge makes it green -->
+      </div>
+    </div>
     <% end %>
     <div class="col-md-4 col-md-offset-4 colormatch">
-      [ <%= link_to "Cancel request and return to Recipes Listing", recipes_path %> ]
+      [ <%= link_to "Cancel request and return to Recipes Listing", recipes_path
+      %> ]
     </div>
   </div>
 </div>
-
-
