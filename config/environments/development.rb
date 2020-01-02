@@ -13,8 +13,8 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Store files locally.
-  config.active_storage.service = :local
-  
+  # config.active_storage.service = :local
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true

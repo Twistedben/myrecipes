@@ -11,5 +11,5 @@ class Recipe < ApplicationRecord
 #Below, sets up one to many association between Comments, and if a recipe is destroyed, so are the comments
   has_many :comments, dependent: :destroy 
   has_rich_text :description
-  has_one_attached :image
+  # has_one_attached :image
 end 
