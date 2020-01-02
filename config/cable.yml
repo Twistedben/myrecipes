@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://bens-myrecipes.herokuapp.com:6379/1
+  url: redis://https://bens-myrecipes.herokuapp.com:6379/1
   channel_prefix: myrecipes_production
