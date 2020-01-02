@@ -7,7 +7,7 @@
      </div>
      <div class="col-md-8 well">
        <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
-       <p><%= truncate(recipe.description, length: 150) %></p>
+       <p><%= recipe.description.to_plain_text.truncate(150) %></p>
 <!--  Below, we check if there are ingredients inside the recipe and display them if so -->
         <%  if recipe.ingredients.any? %>
 <!-- Below, we use magic to tell Rails to Render a "ingredients" partial instead of using an iterator here-->        
