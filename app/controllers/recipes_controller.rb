@@ -6,13 +6,14 @@ before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 before_action :require_user, except: [:index, :show]
 #Below, restricts only the usre who created the recipe to edit, update, or destroy it.
 before_action :require_same_user, only: [:edit, :update, :destroy]
-  
   def index #Below we allow pagination to Recipe's all and set it to 5 per page
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
+
   end 
   
   def show
     @comments = @recipe.comments.paginate(page: params[:page], per_page: 5)
+    
     @comment = Comment.new #This allows new comments within /recipe/show.html.erb 
   end 
   
@@ -36,7 +37,6 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
   end 
   
   def update
-
     if @recipe.update(recipe_params)
       flash[:success] = "Recipe was updated successfully!"
       redirect_to recipe_path(@recipe)
