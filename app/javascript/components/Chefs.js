@@ -8,25 +8,31 @@ class Chefs extends React.Component {
         renderComment(comment)
       }
     }
-    const renderComment = (comment) => {
-      return (
-        <div>
-          Comments: {comment.description}
-        </div>
-      )
+    const renderComment = (chef, comments) => {
+      if (chef.comments) {
+        comments.map((comment) => {
+
+        })
+        return (
+          <div>
+            Comments: {comment.description}
+          </div>
+        )
+      }
     }
+
     return (
       <div>
         <h1>All Chefs</h1>
 
         <ul>
-          {this.props.comments[0].description}
+
           {this.props.chefs.map((chef) => (
 
 
 
             <li key={chef.id}>
-
+              {hasComments(chef.id, comment)}
               <strong>{chef.chefname}
               </strong>
               :
